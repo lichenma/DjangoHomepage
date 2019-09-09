@@ -364,7 +364,33 @@ TIME_ZONE = 'America/SanFranciso
 It is important to note that Django apps follow the `Model, View, Template paradigm`. In a nutshell, the app gets data from a `model`, the `view` does soemthing to the data and then renders a `template` containing the processed information. As such, Django `templates correspond to views` in traditional MVC and Django `views can be likened to the controllers` found in traditional MVC. 
 
 
+Now, lets create an app - `cd` into the first `helloapp` folder and type: 
 
+```
+python manage.py startapp intro
+```
+
+Running this command creates an app called `intro`. Your file structure should look something like this: 
+
+```
+helloapp
+├── helloapp
+│        ├── __init__.py
+│        ├── settings.py
+│        ├── urls.py
+│        └── wsgi.py
+├── intro
+│        ├── __init__.py
+│        ├── admin.py
+│        ├── apps.py
+│        ├── migrations
+│        ├── models.py
+│        ├── tests.py
+│        └── views.py
+└── manage.py
+```
+
+To get Django to recognize our brand new app, we need to add the app name to the `Installed Apps` list in our `settings.py` file. 
 
 
 
