@@ -171,6 +171,11 @@ pip install django
 
 # Creating an App 
 
+Now that we have Django installed, we can use its start script to create a skeleton project. This is as simple as using its admin script in the following way. 
+
+
+
+
 
 
 
