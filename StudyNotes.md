@@ -113,6 +113,65 @@ $ py --version
 
 To avoid polluting our global scope with unnecessary packages, we are going to use a virtual environment to store our packages. One excellent virtual environment manager available for free is `virtualenv`. We will be using Python's package manager `pip` to install this and other packages like `Django` which we will require later on. First we need to install `virtualenv`. 
 
+```
+$ pip install virtualenv 
+```
+
+Once that is done, create a folder called `projects` and `cd` into it 
+
+```
+mkdir projects 
+```
+
+Now inside the projects folder, create another folder called `hello`. This folder will hold our app. 
+
+```
+mkdir hello
+```
+
+At this point we need to create the environment to hold our requirements. We will do this inside the `hello` folder. 
+
+
+```
+virtualenv -p /usr/local/bin/python3 env 
+```
+
+The `-p` switch tells virtualenv the path to the python version that you want to use. Feel free to switch out the path after it with your own Python installation path. The name `env` is the environment name. You can also change it to something else which fits the name of the project. 
+
+Once that is done, we should have a folder called `env` inside your `hello` folder. The structure should now look something like this: 
+
+```
+projects
+├─hello
+│   ├── env
+```
+
+Now we can activate the environment and start coding! 
+
+
+```bash
+source env/bin/activate
+```
+
+You will now see a prompt with the environment name. This means that the environment is active. 
+
+```
+(env)
+```
+
+
+# Installing Django 
+
+We can simply do this using pip install 
+
+```bash 
+pip install django
+```
+
+
+# Creating an App 
+
+
 
 
 
