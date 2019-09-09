@@ -322,6 +322,48 @@ STATIC_URL = '/static/'
 
 # Changing App Settings 
 
+Now let's change a couple of the settings. Open up the `settings.py` file and find a section called Installed Apps which looks something like this: 
+
+
+```python
+# helloapp/settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+
+Django operates on the concept of `apps`. An app is a self contained unit of code which can be executed on its own. An app can do many things such as serve a webpage on the browser or handle user authentication or anything else you can think of. Django comes with some default apps preinstalled such as authentication and session manager apps. Any apps we will create or third-party apps we will need will be added at the bottom of the `Installed Apps` list after the default apps installed. 
+
+
+Before we create a custom app, let's change the application timezone. Django uses the `tz database` timezones and looks like this: 
+
+```python 
+# helloapp/settings.py
+
+TIME_ZONE = 'UTC'
+```
+
+If you want, change it to something resembling this as appropriate for your timezone. 
+
+```python
+# helloapp/settings.py
+TIME_ZONE = 'America/SanFranciso
+```
+
+
+
+
+# Creating your Own App 
+
+It is important to note that Django apps follow the `Model, View, Template paradigm`. In a nutshell, the app gets data from a `model`, the `view` does soemthing to the data and then renders a `template` containing the processed information. As such, Django `templates correspond to views` in traditional MVC and Django `views can be likened to the controllers` found in traditional MVC. 
+
+
 
 
 
