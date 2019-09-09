@@ -65,3 +65,54 @@ This code above creates a list with numbers, a string, and a list. We are using 
 print(my_list[3])
 ```
 
+
+### Dictionaries 
+
+Another useful data type which Python offers out of the box is dictionaries (very useful for leetcode). Dictionaries store key-value pairs, kind of like JSON objects. Creating a dictionary is quite simple as well. 
+
+```python 
+# create a dictionary 
+person = {
+    "name": "Lichen",
+    "age": 20,
+    "hobbies": ["Travelling", "Basketball", "Coding"]
+}
+
+# iterate through the dict and print the keys 
+for key in person: 
+    print(key)
+
+# iterate through the dict's keys and print their values
+for key in person: 
+    print(person[key])
+
+```
+
+
+Now that we have an introduction to Python, we can take a look at Django. `Django` is a Python web framework. It is free and open source and has been around since 2005 - it is very mature and comes with excellent documentation and awesome features included by default. Some excellent tools it provides are: 
+
+1. Excellent light weight server for development and testing 
+2. Good templating language 
+3. Security features like CSRF included right out of the box 
+
+There are a myriad of other useful things included in Django but we will discover them as we go along. 
+
+
+## Setting up 
+
+Before we can get started with getting a Django website up and running, we need to grab a copy of the latest Python version from the Python website. 
+
+To make sure it is installed, open up a terminal and type: 
+
+```
+$ py --version
+```
+
+
+## Setting up the Environment 
+
+To avoid polluting our global scope with unnecessary packages, we are going to use a virtual environment to store our packages. One excellent virtual environment manager available for free is `virtualenv`. We will be using Python's package manager `pip` to install this and other packages like `Django` which we will require later on. First we need to install `virtualenv`. 
+
+
+
+
