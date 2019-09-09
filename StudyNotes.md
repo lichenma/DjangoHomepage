@@ -393,8 +393,25 @@ helloapp
 To get Django to recognize our brand new app, we need to add the app name to the `Installed Apps` list in our `settings.py` file. 
 
 
+```python 
+# helloapp/settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'intro'
+]
+```
 
 
+Once that is done we can run our server and check the output. We mentioned that `Django comes with a built in lightweight web server` which, while useful during development, should not be used in production. We can run the server as follows: 
+
+```bash 
+$ python manage.py runserver
+```
 
 
 
