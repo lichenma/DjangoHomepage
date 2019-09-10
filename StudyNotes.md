@@ -409,11 +409,40 @@ INSTALLED_APPS = [
 
 Once that is done we can run our server and check the output. We mentioned that `Django comes with a built in lightweight web server` which, while useful during development, should not be used in production. We can run the server as follows: 
 
+
 ```bash 
 $ python manage.py runserver
 ```
 
 
+The output should resemble the following: 
 
 
+```
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have unapplied migrations; your app may not work properly until they are applied.
+Run 'python manage.py migrate' to apply them.
+
+June 04, 2016 - 07:42:08
+Django version 1.9.6, using settings 'helloapp.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
+
+We can see that there is a warning that we have unapplied migrations - we will ignore that warning for now. Now if we go to the browser and access `http://127.0.0.1:8000/` we should see the Django welcome page if all is running smoothly. 
+
+
+We will be replacing this welcome page with our own template but first let's talk migrations. 
+
+
+
+# Migrations 
+
+Migrations make is easy for programmers to **change the database schema (model) without having to lose any data.** Any time that a new database model is created, running migrations will update the database tables to use the new schema without wiping out all of the data or forcing the user to go through the process of dropping and recreating the database. 
+
+
+D
 
