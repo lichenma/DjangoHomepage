@@ -582,4 +582,53 @@ This file defines a view called `HomePageView`. Django views take in a `request`
 
 Once a HTTP GET request has been received, the method renders a template called `index.html` which is just a normal HTML file which could have special Django template tags written alongside normal HTML tags. If you run the server now, you will see an error page which says: **TemplateDoesNotExist at /**
 
-This is because we do not have any templates at all. Django looks for templates 
+This is because we do not have any templates at all. Django looks for templates in a `templates` folder inside the application so we are going to create one for the `intro` app folder. 
+
+
+```
+$ mkdir templates
+```
+
+Go into the newly created templates folder and create a file called `index.html`: 
+
+```bash
+(env) hello/helloapp/howdy/templates
+> touch index.html
+```
+
+Inside the `index.html` file, we have the following code: 
+
+```html 
+<!-- intro/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello!</title>
+    </head>
+    <body>
+        <h1>This is an introductory Django project!</h1>
+    </body>
+</html>
+```
+
+Now let's run the server: 
+
+```
+$ python manage.py runserver
+```
+
+Now we can see that the template has rendered if we start up the server again! 
+
+
+# Linking pages 
+
+Let's add another page. In the `intro/templates` folder, add a file called `about.html`. Inside it write this HTML code: 
+
+
+```
+
+```
+
+
+
