@@ -626,8 +626,20 @@ Now we can see that the template has rendered if we start up the server again!
 Let's add another page. In the `intro/templates` folder, add a file called `about.html`. Inside it write this HTML code: 
 
 
-```
-
+```html
+<!-- intro/templates/about.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello!</title>
+    </head>
+    <body>
+        <h1>Welcome to the about page</h1>
+        <p>
+            This page was written by some dude called Lichen Ma 
+        </p>
+        
 ```
 
 
