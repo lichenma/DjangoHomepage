@@ -444,5 +444,142 @@ We will be replacing this welcome page with our own template but first let's tal
 Migrations make is easy for programmers to **change the database schema (model) without having to lose any data.** Any time that a new database model is created, running migrations will update the database tables to use the new schema without wiping out all of the data or forcing the user to go through the process of dropping and recreating the database. 
 
 
-D
+Django comes with some migrations already created for its default apps. If your server is still running stop it using the exit command `CTRL + C`. We can now apply the migrations by typing: 
 
+```
+$ python manage.py migrate
+```
+
+The output should look something like this: 
+
+```
+Operations to perform:
+  Apply all migrations: sessions, auth, contenttypes, admin
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying sessions.0001_initial... OK
+```
+
+Running the server now will not show any warnings. 
+
+
+# Urls and Templates 
+
+When we ran the server, the default Django page was shown. We need Django to access our `intro` app when someone goes to the home page URL which is `/`. For that, we need to define a URL which will tell Django where to look for the homepage template. 
+
+
+Open up the `urls.py` file inside the inner `helloapp` folder. It should look something like this. 
+
+
+
+```python 
+# helloapp/urls.py
+ """helloapp URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.9/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.conf.urls import url, include
+    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+"""
+from django.conf.urls import url
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+]
+```
+
+
+
+As you can see, there is an existing URL pattern for the Django admin site which comes by default with Django. Let's add our own url to point to our intro add. Edit the file to look like this: 
+
+
+```python
+# helloapp/urls.py
+from django.conf.urls import url, include
+from django.contrib import admin
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('howdy.urls')),
+]
+```
+
+
+
+Note that we have added an import for `include` from django.conf.urls and added a url pattern for an empty route. When someone accesses the homepage, (in our case `http://localhost:8000`), Django will look for more url definitions in the `intro` app. Since there are none, running the app will produce a huge stack trace due to an `ImportError`. 
+
+
+```
+ImportError: No module named 'intro.urls'
+```
+
+Let's fix that, go to the `intro` app folder and create a file called `urls.py`. The `intro` app folder should now look like this. 
+
+
+```
+├── intro
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+```
+
+Inside the new `urls.py` file, write this: 
+
+
+```python
+# intro/urls.py 
+from django.conf.urls import url 
+from intro import views 
+
+urlpatterns = [
+    path('$', views.HomePageView.as_view()), 
+]
+```
+
+This code imports the views from our `intro` app and expects a view called `HomePageView` to be defined. Since we don't have one, open the `views.py` file in the `intro` app and write this code. 
+
+
+```python
+# intro/views.py
+from django.shortcuts import render
+from django.views.generic import TemplateView 
+
+# Create the views here 
+class HomePageView(TemplateView): 
+    def get(self, request, **kwargs):
+        return render(request, 'index.html', context=None)
+```
+
+This file defines a view called `HomePageView`. Django views take in a `request` and return a `response`. In our case, the method `get` expects a HTTP GET request to the url defined in our `urls.py` file. On a side note, we could rename our method to `post` to handle HTTP POST requests. 
+
+
+
+Once a HTTP GET request has been received, the method renders a template called `index.html` which is just a normal HTML file which could have special Django template tags written alongside normal HTML tags. If you run the server now, you will see an error page which says: **TemplateDoesNotExist at /**
+
+This is because we do not have any templates at all. Django looks for templates 
