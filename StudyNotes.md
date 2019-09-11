@@ -661,6 +661,46 @@ Once done let's edit the original `index.html` page to look like this:
 </html>
 ```
 
+Right now, clicking on the `About me` link will not quite work because our app doesn't have an `/about/` url defined. Let's take a look at the `urls.py` file in our `intro` app to add it. 
+
+
+```python
+# intro/urls.py 
+from django.conf.urls import url 
+from intro import views 
+
+urlpatterns = [
+    url(r'^$', views.HomePageView.as_view()),
+    url(r'^about/$', views.AboutPageView.as_view()), # add this /about/ route 
+]
+```
+
+Once we have added the route, we need to add a view to render the `about.html` template when we access the `/about` url. Let's edit the `views.py` file in the `intro` app. 
+
+
+```python
+# intro/views.py
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
+class HomePageView(TemplateView):
+    def get(self, request, **kwargs):
+        return render(request, 'index.html', context=None)
+
+# Add this view
+class AboutPageView(TemplateView):
+    template_name = "about.html"
+```
+
+Notice that in the second view a `get` method was not defined. This is another way of using the `TemplateView` class. If the `template_name` attribute is assigned, a get request to that view will automatically use the defined template. We can also change `HomePageView` to use the format used in `AboutPageView`. 
+
+
+
+
+
+
+
+
 
 
 
