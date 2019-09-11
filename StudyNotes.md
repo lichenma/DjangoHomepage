@@ -639,8 +639,29 @@ Let's add another page. In the `intro/templates` folder, add a file called `abou
         <p>
             This page was written by some dude called Lichen Ma 
         </p>
-        
+        <a href="/">Go back home</a>
+    </body>
+</html>
 ```
+
+Once done let's edit the original `index.html` page to look like this: 
+
+```html
+<!-- intro/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello!</title>
+    </head>
+    <body>
+        <h1>This is an introductory Django project!</h1>
+        <a href="/about/">About Me</a>
+    </body>
+</html>
+```
+
+
 
 
 
